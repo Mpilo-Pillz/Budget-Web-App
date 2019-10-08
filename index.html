@@ -11,7 +11,7 @@
    <div class="top">
        <div class="budget">
            <div class="budget__title">
-               Available Budget in <span class="budget__title--month">%month</span>:
+               Available Budget in <span class="budget__title--month">%month%</span>:
            </div>
 
            <div class="budget__value">+ 56, 243.17</div>
@@ -37,16 +37,15 @@
    <div class="bottom">
        <div class="add">
            <div class="add__container">
-               <div class="add__type">
-                   <select name="selector" id="selector" class="add__container">
+                   <select name="selector" id="selector" class="add__type">
                     <option value="inc" selected>+</option>
                     <option value="exp">-</option>
                    </select>
-                   <input type="text" class="add__desctiption" placeholder="Add Description">
+                   <input type="text" class="add__description" placeholder="Add Description">
                    <input type="number" class="add__value" placeholder="Value">
                    <button class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
-               </div>
            </div>
+        </div>   
            <div class="container clearfix">
                <div class="income">
                    <h2 class="income__title">Income</h2>
@@ -60,7 +59,6 @@
                    <div class="expenses__list"></div>
                </div>
            </div>
-       </div>
    </div>
    <script src="app.js"></script>
 </body>
