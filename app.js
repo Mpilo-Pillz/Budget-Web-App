@@ -64,6 +64,8 @@ var UIController = (function () {
         addDescription: '.add__description',
         addValue: '.add__value',
         addBtn: '.add__btn',
+        incomeContainer: 'income__list',
+        expensesContainer: 'expenses__list'
 
     }
     return {
@@ -78,10 +80,27 @@ var UIController = (function () {
 
         addListItem: function(obj, type) {
             //create an html string with placeholder text
+            var html, newHtml, element;
+
+            if (type === 'inc') {
+                element = DOMstrings.incomeContainer;
+                html = '<div class="item clearfix" id="income-%id%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div><div class="item clearfix" id="income-1"><div class="item__description">Sold car</div><div class="right clearfix"><div class="item__value">+ 1,500.00</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div> </div>';
+            } else if (type === 'exp') {
+                element = DOMstrings.expensesContainer;
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div><div class="item clearfix" id="expense-1"><div class="item__description">Grocery shopping</div><div class="right clearfix"><div class="item__value">- 435.28</div><div class="item__percentage">10%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            
+
             
             //replace the placeholder text with data received from object
+            newHtml = html.replace('%id%', obj.id);
+            newHtml = html.replace('%description', obj.description);
+            newHtml = html.replace('%value%', obj.value);
+
 
             //insert html into the DOM
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
         },
 
         getDOMstrings: function() {
@@ -116,6 +135,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
         //3. Add the item to the UI
+        UICtrl.addListItem(newItem, input.type);
 
         //4. Calculate the budget
 
