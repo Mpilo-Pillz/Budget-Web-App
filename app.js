@@ -64,8 +64,8 @@ var UIController = (function () {
         addDescription: '.add__description',
         addValue: '.add__value',
         addBtn: '.add__btn',
-        incomeContainer: 'income__list',
-        expensesContainer: 'expenses__list'
+        incomeContainer: '.income__list',
+        expensesContainer: '.expenses__list'
 
     }
     return {
@@ -84,22 +84,24 @@ var UIController = (function () {
 
             if (type === 'inc') {
                 element = DOMstrings.incomeContainer;
-                html = '<div class="item clearfix" id="income-%id%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div><div class="item clearfix" id="income-1"><div class="item__description">Sold car</div><div class="right clearfix"><div class="item__value">+ 1,500.00</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div> </div>';
+                html = '<div class="item clearfix" id="inc-%id%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             } else if (type === 'exp') {
                 element = DOMstrings.expensesContainer;
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div><div class="item clearfix" id="expense-1"><div class="item__description">Grocery shopping</div><div class="right clearfix"><div class="item__value">- 435.28</div><div class="item__percentage">10%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
             
 
             
             //replace the placeholder text with data received from object
             newHtml = html.replace('%id%', obj.id);
-            newHtml = html.replace('%description%', obj.description);
-            newHtml = html.replace('%value%', obj.value);
-
+            newHtml = newHtml.replace('%description%', obj.description);
+            newHtml = newHtml.replace('%value%', obj.value);
+            
 
             //insert html into the DOM
+            // document.querySelector(element).insertAdjacentHTML('beforeend', html);
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+            // document.querySelector(element).insertAdjacentHTML('beforeend', '<div id="two">Mpilo</div>' );
 
         },
 
